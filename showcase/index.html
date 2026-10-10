@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Five Harmonica Terminal Demos</title>
+    <title>Eight Harmonica Terminal Demos</title>
     <style>
       :root {
         color-scheme: dark;
@@ -23,6 +23,14 @@
       article { background: #1b1d36; border: 1px solid #34375e; border-radius: 1rem; overflow: hidden; }
       article div { padding: 1.25rem; }
       img { display: block; width: 100%; background: #0d0e1d; }
+      .recording { appearance: none; border: 0; cursor: zoom-in; display: block; padding: 0; width: 100%; }
+      .recording:focus-visible { outline: 3px solid #b9bdff; outline-offset: -3px; }
+      .recording span { display: block; padding: .65rem 1rem; color: #c8c8da; font-size: .9rem; text-align: left; }
+      dialog { background: #121428; border: 1px solid #575bd8; border-radius: 1rem; color: #f8f7ff; max-width: min(1200px, 94vw); padding: 1rem; width: 100%; }
+      dialog::backdrop { background: rgb(0 0 0 / .78); }
+      dialog img { margin-top: .75rem; max-height: 82vh; object-fit: contain; }
+      .dialog-header { align-items: center; display: flex; justify-content: space-between; gap: 1rem; }
+      .close { background: #575bd8; border: 0; border-radius: .4rem; color: white; cursor: pointer; font: inherit; padding: .55rem .8rem; }
       .note { margin-top: 3rem; padding: 1.25rem; border-left: 4px solid #8d93ff; background: #1b1d36; }
     </style>
   </head>
@@ -30,7 +38,7 @@
     <main>
       <header>
         <p class="eyebrow">Bubble Tea + Lip Gloss + Harmonica</p>
-        <h1>Five small terminal apps with natural motion.</h1>
+        <h1>Eight small terminal apps with natural motion.</h1>
         <p>
           Each recording is a separate interactive program. Harmonica gives transitions a
           little weight and continuity; it is not a one-size-fits-all progress-bar widget.
@@ -38,11 +46,14 @@
       </header>
 
       <section class="grid" aria-label="Animated demo recordings">
-        <article><img src="assets/file-transfer.gif" alt="VHS recording of a file transfer monitor"><div><h2>File transfer monitor</h2><p>Starts, pauses, resumes, and finishes a backup transfer with checksum confirmation.</p></div></article>
-        <article><img src="assets/test-suite.gif" alt="VHS recording of a test dashboard"><div><h2>Test dashboard</h2><p>Moves through a concise set of quality gates and marks each completed check.</p></div></article>
-        <article><img src="assets/order-shipment.gif" alt="VHS recording of a shipment tracker"><div><h2>Shipment tracker</h2><p>Tracks a parcel across collection, delivery, and final arrival.</p></div></article>
-        <article><img src="assets/agent-work-queue.gif" alt="VHS recording of an agent work queue"><div><h2>Agent work queue</h2><p>Completes, blocks, and advances individual work items without hiding status.</p></div></article>
-        <article><img src="assets/media-upload.gif" alt="VHS recording of a media uploader"><div><h2>Media uploader</h2><p>Uploads three different media files one at a time with independent progress.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/file-transfer.gif" data-title="File transfer monitor"><img src="assets/file-transfer.gif" alt="VHS recording of a file transfer monitor"><span>Expand recording</span></button><div><h2>File transfer monitor</h2><p>Starts, pauses, resumes, and finishes a backup transfer with checksum confirmation.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/test-suite.gif" data-title="Test dashboard"><img src="assets/test-suite.gif" alt="VHS recording of a test dashboard"><span>Expand recording</span></button><div><h2>Test dashboard</h2><p>Moves through a concise set of quality gates and marks each completed check.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/order-shipment.gif" data-title="Shipment tracker"><img src="assets/order-shipment.gif" alt="VHS recording of a shipment tracker"><span>Expand recording</span></button><div><h2>Shipment tracker</h2><p>Tracks a parcel across collection, delivery, and final arrival.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/agent-work-queue.gif" data-title="Agent work queue"><img src="assets/agent-work-queue.gif" alt="VHS recording of an agent work queue"><span>Expand recording</span></button><div><h2>Agent work queue</h2><p>Completes, blocks, and advances individual work items without hiding status.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/media-upload.gif" data-title="Media uploader"><img src="assets/media-upload.gif" alt="VHS recording of a media uploader"><span>Expand recording</span></button><div><h2>Media uploader</h2><p>Uploads three different media files one at a time with independent progress.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/incident-response.gif" data-title="Incident response"><img src="assets/incident-response.gif" alt="VHS recording of an incident response"><span>Expand recording</span></button><div><h2>Incident response</h2><p>Shows alert triage, mitigation, verification, and a clear follow-up.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/software-rollout.gif" data-title="Software rollout"><img src="assets/software-rollout.gif" alt="VHS recording of a software rollout"><span>Expand recording</span></button><div><h2>Software rollout</h2><p>Makes a cautious release visible from checks through canary and confirmation.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/support-escalation.gif" data-title="Support escalation"><img src="assets/support-escalation.gif" alt="VHS recording of a support escalation"><span>Expand recording</span></button><div><h2>Support escalation</h2><p>Keeps ownership and customer confirmation clear across the escalation.</p></div></article>
       </section>
 
       <aside class="note">
@@ -54,5 +65,26 @@
         is not visible yet, run its matching <code>.tape</code> file after repairing local VHS capture.
       </p>
     </main>
+    <dialog id="recording-dialog" aria-labelledby="recording-title">
+      <div class="dialog-header"><strong id="recording-title"></strong><button class="close" type="button">Close</button></div>
+      <img id="expanded-recording" alt="">
+    </dialog>
+    <script>
+      const dialog = document.querySelector("#recording-dialog");
+      const expandedRecording = document.querySelector("#expanded-recording");
+      const recordingTitle = document.querySelector("#recording-title");
+      document.querySelectorAll(".recording").forEach((recording) => {
+        recording.addEventListener("click", () => {
+          recordingTitle.textContent = recording.dataset.title;
+          expandedRecording.src = recording.dataset.gif;
+          expandedRecording.alt = `Expanded VHS recording: ${recording.dataset.title}`;
+          dialog.showModal();
+        });
+      });
+      document.querySelector(".close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 # Harmonica demos
 
-Five independent terminal interfaces demonstrate small, believable uses for
-Harmonica motion—not five modes of one progress bar.
+Eight independent terminal interfaces demonstrate small, believable uses for
+Harmonica motion—not eight modes of one progress bar.
 
 | Demo | Run |
 | --- | --- |
@@ -10,6 +10,9 @@ Harmonica motion—not five modes of one progress bar.
 | Shipment tracker | `go run ./cmd/shipment-tracker` |
 | Agent work queue | `go run ./cmd/agent-queue` |
 | Media uploader | `go run ./cmd/media-uploader` |
+| Incident response | `go run ./cmd/incident-response` |
+| Software rollout | `go run ./cmd/software-rollout` |
+| Support escalation | `go run ./cmd/support-escalation` |
 
 Each is interactive and simulated: it visualizes state changes locally without
 copying files, running checks, buying labels, contacting agents, or uploading
