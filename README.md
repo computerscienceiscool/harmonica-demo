@@ -1,30 +1,29 @@
-# Animated progress bar
+# Harmonica demos
 
-This terminal demo uses a Harmonica spring to animate progress through five
-real-world scenarios. Run it from the `examples` module:
+Five independent terminal interfaces demonstrate small, believable uses for
+Harmonica motion—not five modes of one progress bar.
 
-```sh
-go run ./animated-progress-bar
-```
+| Demo | Run |
+| --- | --- |
+| File transfer monitor | `go run ./cmd/file-transfer` |
+| Test dashboard | `go run ./cmd/test-dashboard` |
+| Shipment tracker | `go run ./cmd/shipment-tracker` |
+| Agent work queue | `go run ./cmd/agent-queue` |
+| Media uploader | `go run ./cmd/media-uploader` |
 
-Use `1` through `5` to choose a scenario, the left/right arrow keys (or
-`h`/`l`) to move through its stages, `r` to reset, and `q` to quit. The
-scenarios are file transfer, test suite, order shipment, agent work queue, and
-media upload.
-
-Harmonica supplies the motion between values. It does not supply a progress-bar
-widget: this example draws the bar with Lip Gloss. A conventional Charm
-progress-bar widget comes from the separate `bubbles/progress` package.
+Each is interactive and simulated: it visualizes state changes locally without
+copying files, running checks, buying labels, contacting agents, or uploading
+data. Harmonica supplies the spring motion; Bubble Tea drives the terminal UI.
 
 ## Showcase page
 
-`showcase/index.html` presents one VHS recording for each scenario. Generate
-the GIFs from the `examples` module with:
+`showcase/index.html` presents one VHS recording for each independent demo.
+Generate the GIFs from the repository root with:
 
 ```sh
-vhs showcase/file-transfer.tape
-vhs showcase/test-suite.tape
-vhs showcase/order-shipment.tape
-vhs showcase/agent-work-queue.tape
-vhs showcase/media-upload.tape
+./showcase/record-all.sh
 ```
+
+The helper deliberately places VHS temporary frames under `showcase/.tmp`.
+That makes it work with the Snap-packaged FFmpeg on this machine, whose sandbox
+cannot read the normal system `/tmp` directory.

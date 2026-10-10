@@ -3,15 +3,18 @@ Set Width 1000
 Set Height 640
 Set FontSize 22
 Set TypingSpeed 0ms
-Type "go run ./animated-progress-bar"
+Type "go run ./cmd/test-dashboard"
 Enter
 Sleep 2s
-Type "2"
+Type " "
 Sleep 500ms
-Type "l"
-Sleep 700ms
-Type "l"
-Sleep 700ms
-Type "l"
+Type j
+Type " "
+Sleep 500ms
+Type j
+Type " "
+Sleep 500ms
+Type j
+Type " "
 Sleep 1s
 Type "q"
