@@ -3,10 +3,9 @@ Set Width 1000
 Set Height 760
 Set FontSize 22
 Set TypingSpeed 0ms
-Type "go run ./cmd/silly-lab"
+Type "go run ./cmd/silly-kitchen"
 Enter
 Sleep 2s
-Type "3"
 Type "l"
 Sleep 700ms
 Type "l"

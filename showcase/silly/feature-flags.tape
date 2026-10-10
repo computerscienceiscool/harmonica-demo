@@ -3,16 +3,17 @@ Set Width 1000
 Set Height 760
 Set FontSize 22
 Set TypingSpeed 0ms
-Type "go run ./cmd/silly-lab"
+Type "go run ./cmd/silly-flags"
 Enter
 Sleep 2s
-Type "2"
-Type "l"
+Space
 Sleep 700ms
-Type "l"
+Right
+Space
 Sleep 700ms
-Type "l"
+Right
+Space
 Sleep 700ms
-Type "l"
+Type "a"
 Sleep 1s
 Type "q"

@@ -3,16 +3,16 @@ Set Width 1000
 Set Height 760
 Set FontSize 22
 Set TypingSpeed 0ms
-Type "go run ./cmd/silly-lab"
+Type "go run ./cmd/silly-socks"
 Enter
 Sleep 2s
-Type "5"
 Type "l"
 Sleep 700ms
 Type "l"
 Sleep 700ms
-Type "l"
+Type "j"
 Sleep 700ms
-Type "l"
+Type "j"
+Enter
 Sleep 1s
 Type "q"

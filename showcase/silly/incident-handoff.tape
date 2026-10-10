@@ -3,16 +3,13 @@ Set Width 1000
 Set Height 760
 Set FontSize 22
 Set TypingSpeed 0ms
-Type "go run ./cmd/silly-lab"
+Type "go run ./cmd/silly-handoff"
 Enter
 Sleep 2s
-Type "1"
-Type "l"
+Tab
+Enter
 Sleep 700ms
-Type "l"
-Sleep 700ms
-Type "l"
-Sleep 700ms
-Type "l"
+Tab
+Enter
 Sleep 1s
 Type "q"
