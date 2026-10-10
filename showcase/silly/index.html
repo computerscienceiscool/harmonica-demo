@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Silly examples · Harmonica</title>
+    <style>
+      :root { font-family: ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif; background: #fff3d5; color: #24142f; }
+      body { background: radial-gradient(circle at 8% 8%, #ff9fcb 0 10rem, transparent 10.2rem), radial-gradient(circle at 92% 12%, #8ee7ff 0 13rem, transparent 13.2rem), #fff3d5; margin: 0; min-height: 100vh; }
+      main { margin: auto; max-width: 1180px; padding: 3.5rem 1.5rem 5rem; }
+      header { max-width: 780px; }
+      .eyebrow { color: #8d3470; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+      h1 { font-size: clamp(3rem, 8vw, 6.5rem); letter-spacing: -.07em; line-height: .88; margin: .45rem 0 1.25rem; }
+      .intro { font-size: clamp(1.1rem, 2vw, 1.35rem); max-width: 55ch; }
+      a { color: #53215e; font-weight: 800; }
+      .grid { display: grid; gap: 1.35rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 2.5rem; }
+      article { background: #fffdf8; border: 3px solid #24142f; border-radius: 1.25rem; box-shadow: 7px 7px 0 #24142f; overflow: hidden; transform: rotate(var(--tilt)); }
+      article:nth-child(2n) { --tilt: .5deg; } article:nth-child(3n) { --tilt: -.45deg; }
+      article div { padding: 1.15rem 1.2rem 1.35rem; } h2 { font-size: 1.45rem; margin: 0 0 .35rem; } p { margin: 0; }
+      img { background: #17151a; display: block; width: 100%; }
+      .recording { appearance: none; background: none; border: 0; cursor: zoom-in; display: block; padding: 0; width: 100%; }
+      .recording:focus-visible { outline: 5px solid #12a6d9; outline-offset: -5px; }
+      .recording span { background: #24142f; color: #fffdf8; display: block; font-size: .88rem; font-weight: 800; padding: .55rem .8rem; text-align: left; }
+      .back { display: inline-block; margin-top: 3rem; }
+      dialog { background: #fffdf8; border: 3px solid #24142f; border-radius: 1.25rem; color: #24142f; max-width: min(1200px, 94vw); padding: 1rem; width: 100%; }
+      dialog::backdrop { background: rgb(36 20 47 / .82); } dialog img { margin-top: .8rem; max-height: 82vh; object-fit: contain; }
+      .dialog-header { align-items: center; display: flex; justify-content: space-between; gap: 1rem; } .close { background: #ff9fcb; border: 2px solid #24142f; border-radius: .5rem; color: #24142f; cursor: pointer; font: inherit; font-weight: 800; padding: .55rem .8rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Harmonica experimental playground</p>
+        <h1>Silly examples.<br>Serious springs.</h1>
+        <p class="intro">Six unexpectedly expressive terminal interfaces. Each is a real interaction pattern wearing a ridiculous hat, so the motion is easier to feel—and remember.</p>
+      </header>
+      <section class="grid" aria-label="Silly Harmonica recordings">
+        <article><button class="recording" type="button" data-gif="assets/incident-handoff.gif" data-title="Incident commander's handoff"><img src="assets/incident-handoff.gif" alt="VHS recording of an incident commander's handoff"><span>Expand recording</span></button><div><h2>Incident commander's handoff</h2><p>Make responder ownership feel visible, even when the pager is feeling theatrical.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/feature-flags.gif" data-title="Feature-flag rollout"><img src="assets/feature-flags.gif" alt="VHS recording of a feature-flag rollout"><span>Expand recording</span></button><div><h2>Feature-flag rollout</h2><p>Internal → canary → everyone, with the comfort of a very imaginary button.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/kitchen-ticket.gif" data-title="Restaurant kitchen ticket"><img src="assets/kitchen-ticket.gif" alt="VHS recording of a restaurant kitchen ticket"><span>Expand recording</span></button><div><h2>Restaurant kitchen ticket</h2><p>A ticket crosses the line from “heard” to “runner has it.”</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/bubble-tea.gif" data-title="Bubble tea assembly"><img src="assets/bubble-tea.gif" alt="VHS recording of bubble tea assembly"><span>Expand recording</span></button><div><h2>Bubble tea assembly</h2><p>Layers, fill levels, pearls, and the most consequential seal in beverage history.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/lost-sock.gif" data-title="Lost sock recovery mission"><img src="assets/lost-sock.gif" alt="VHS recording of a lost sock recovery mission"><span>Expand recording</span></button><div><h2>Lost sock recovery mission</h2><p>A radar-assisted investigation into textile disappearance.</p></div></article>
+        <article><button class="recording" type="button" data-gif="assets/space-raccoon.gif" data-title="Space raccoon launch"><img src="assets/space-raccoon.gif" alt="VHS recording of a space raccoon launch"><span>Expand recording</span></button><div><h2>Space raccoon launch</h2><p>Fuel telemetry, countdowns, and a raccoon who definitely read the manual.</p></div></article>
+      </section>
+      <a class="back" href="../">← Back to real-world workflow demos</a>
+    </main>
+    <dialog id="recording-dialog" aria-labelledby="recording-title"><div class="dialog-header"><strong id="recording-title"></strong><button class="close" type="button">Close</button></div><img id="expanded-recording" alt=""></dialog>
+    <script>
+      const dialog = document.querySelector("#recording-dialog");
+      const image = document.querySelector("#expanded-recording");
+      const title = document.querySelector("#recording-title");
+      document.querySelectorAll(".recording").forEach((recording) => recording.addEventListener("click", () => { title.textContent = recording.dataset.title; image.src = recording.dataset.gif; image.alt = `Expanded VHS recording: ${recording.dataset.title}`; dialog.showModal(); }));
+      document.querySelector(".close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+    </script>
+  </body>
+</html>

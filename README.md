@@ -30,3 +30,10 @@ Generate the GIFs from the repository root with:
 The helper deliberately places VHS temporary frames under `showcase/.tmp`.
 That makes it work with the Snap-packaged FFmpeg on this machine, whose sandbox
 cannot read the normal system `/tmp` directory.
+
+## Silly examples
+
+`showcase/silly/index.html` is a high-color companion page with six playful
+versions of recognizable interaction patterns. It uses the same `Silly Lab`
+terminal app, selected with keys `1` through `6`, and each scenario has its own
+VHS tape and expanded recording.

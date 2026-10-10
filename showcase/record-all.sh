@@ -7,6 +7,6 @@ repo_root=$(cd "$(dirname "$0")/.." && pwd)
 tmp_dir="$repo_root/showcase/.tmp"
 
 mkdir -p "$tmp_dir" "$repo_root/showcase/assets"
-for tape in "$repo_root"/showcase/*.tape; do
+for tape in "$repo_root"/showcase/*.tape "$repo_root"/showcase/silly/*.tape; do
   TMPDIR="$tmp_dir" vhs "$tape"
 done
